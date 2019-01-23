@@ -1,0 +1,54 @@
+﻿@model E_ShopMVC.ViewModels.Product.EditProductViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <td>Name</td>
+            <td>
+                @Html.HiddenFor(model => model.ProductId)
+                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductName)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Description</td>
+            <td>
+                @Html.TextAreaFor(model => model.ProductDetail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductDetail)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Price</td>
+            <td>
+                @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductPrice)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Category</td>
+            <td>
+                @Html.DropDownListFor(model => Model.CategoryId, Model.CategoryDropDownList, new { @class = "form-control" })
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save" class="btn btn-default"/>
+
+    <br />
+
+    <div>
+        @Html.ActionLink("Back to Product", "Product", new { id = Model.CategoryId })
+    </div>
+}

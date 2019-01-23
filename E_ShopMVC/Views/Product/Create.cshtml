@@ -1,0 +1,51 @@
+﻿@model E_ShopMVC.ViewModels.Product.EditProductViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        @Html.HiddenFor(model => model.CategoryId)
+        <tr>
+            <td>Name</td>
+            <td>
+                @Html.TextBoxFor(model => model.ProductName, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.ProductName)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Description</td>
+            <td>
+                @Html.TextAreaFor(model => model.ProductDetail, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.ProductDetail)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Price</td>
+            <td>
+                @Html.TextBoxFor(model => model.ProductPrice, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.ProductPrice)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Category</td>
+            <td>
+                @Html.TextBoxFor(model => model.CategoryName, new {@class = "form-control", @readonly = "readonly"})
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save" class="btn btn-default"/>
+}
+<div>
+    @Html.ActionLink("Back To Products", "Product")
+</div>
